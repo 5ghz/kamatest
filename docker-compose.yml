@@ -1,0 +1,20 @@
+version: '3'
+services:
+  kamailio:
+    build: ./kamailio
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.2
+    container_name: app_kamailio
+  asterisk:
+    build: ./asterisk
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.3
+    container_name: app_asterisk
+networks:
+  static-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
